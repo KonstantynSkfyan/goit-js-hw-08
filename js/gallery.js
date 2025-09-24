@@ -86,3 +86,18 @@ const createImg = (selector, items) => {
 };
 
 createImg(".gallery", images);
+
+const gallery = document.querySelector(".gallery");
+
+gallery.addEventListener("click", (event) => {
+  if (event.target.nodeName !== "IMG") return;
+
+  event.preventDefault();
+
+  const bigImageURL = event.target.dataset.source;
+
+  const instance = basicLightbox.create(`
+    <img src="${bigImageURL}" alt="${event.target.alt}" />
+  `);
+  instance.show();
+});
